@@ -1,0 +1,10 @@
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+google-generativeai>=0.3.2
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+
+# Image Generation APIs (optional - choose based on your provider)
+openai>=1.0.0  # For DALL-E 3
+requests>=2.31.0  # For Stability AI API
+Pillow>=10.0.0  # For image processing
