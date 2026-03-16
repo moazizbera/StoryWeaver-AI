@@ -207,6 +207,10 @@ Output Format: Structured JSON with nested arrays
 
 # 🏗 Architecture
 
+![Architecture Diagram](docs/Architecture_Diagram.png)
+
+---
+
 ## System Overview
 
 **Frontend**
