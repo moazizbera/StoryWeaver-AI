@@ -343,22 +343,41 @@ Python 3.9+\
 Node.js 18+\
 Google Gemini API Key
 
+## Clone Repository
+
+```bash
+git clone https://github.com/moazizbera/StoryWeaver-AI.git
+cd StoryWeaver-AI
+```
+
 ## Backend Setup
 
-git clone `<repository-url>`{=html} cd StoryWeaver-AI/backend pip
-install -r requirements.txt cp .env.example .env
+```bash
+cd backend
+pip install -r requirements.txt
+cp .env.example .env
+```
 
-Add your Gemini API key inside `.env`
+Add your Gemini API key inside `backend/.env`:
+```
+GEMINI_API_KEY=your_api_key_here
+```
 
 Run backend:
 
+```bash
 python main.py
+```
 
 Backend runs on: http://localhost:8000
 
 ## Frontend Setup
 
-cd StoryWeaver-AI/frontend npm install npm run dev
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
 
 Frontend runs on: http://localhost:3002
 
@@ -1062,11 +1081,20 @@ If StoryWeaver AI helped you or impressed you, please:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/storyweaver-ai.git
+git clone https://github.com/moazizbera/StoryWeaver-AI.git
+cd StoryWeaver-AI
 
-# Start creating cinematic stories in 5 minutes
-cd storyweaver-ai
-# Follow Quick Start guide above
+# Backend
+cd backend
+pip install -r requirements.txt
+python main.py
+
+# Frontend (new terminal)
+cd ../frontend
+npm install
+npm run dev
+
+# Visit: http://localhost:3002
 ```
 
 ---
