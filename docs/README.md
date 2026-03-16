@@ -343,41 +343,22 @@ Python 3.9+\
 Node.js 18+\
 Google Gemini API Key
 
-## Clone Repository
-
-```bash
-git clone https://github.com/moazizbera/StoryWeaver-AI.git
-cd StoryWeaver-AI
-```
-
 ## Backend Setup
 
-```bash
-cd backend
-pip install -r requirements.txt
-cp .env.example .env
-```
+git clone `<repository-url>`{=html} cd StoryWeaver-AI/backend pip
+install -r requirements.txt cp .env.example .env
 
-Add your Gemini API key inside `backend/.env`:
-```
-GEMINI_API_KEY=your_api_key_here
-```
+Add your Gemini API key inside `.env`
 
 Run backend:
 
-```bash
 python main.py
-```
 
 Backend runs on: http://localhost:8000
 
 ## Frontend Setup
 
-```bash
-cd ../frontend
-npm install
-npm run dev
-```
+cd StoryWeaver-AI/frontend npm install npm run dev
 
 Frontend runs on: http://localhost:3002
 
@@ -1019,197 +1000,6 @@ This project is open source under the MIT License, which means:
 
 ------------------------------------------------------------------------
 
-# ☁️ Proof of Google Cloud Deployment
-
-## Verifiable Gemini 2.5 Flash Integration
-
-### 📁 Source Code Evidence
-
-Direct links to Google Gemini implementation in this repository:
-
-**1. Core Gemini Integration:**
-- 🔗 [backend/gemini_agent.py](https://github.com/moazizbera/StoryWeaver-AI/blob/main/backend/gemini_agent.py)
-  - Lines 59-63: Model initialization with `"gemini-2.5-flash"`
-  - Lines 48-56: Generation config (16,384 tokens, JSON mode)
-  - Lines 75-153: Complete story generation with retry logic
-
-**2. API Entry Point:**
-- 🔗 [backend/main.py](https://github.com/moazizbera/StoryWeaver-AI/blob/main/backend/main.py)
-  - Line 62: Health check showing `"model": "gemini-2.5-flash"`
-  - Lines 66-100: POST /generate-story endpoint using Gemini
-
-**3. Environment Configuration:**
-- 🔗 [backend/.env.example](https://github.com/moazizbera/StoryWeaver-AI/blob/main/backend/.env.example)
-  - Lines 14-15: `GEMINI_API_KEY` configuration template
-  - Link to Google AI Studio for API key generation
-
-**4. Comprehensive Documentation:**
-- 🔗 [docs/GEMINI_INTEGRATION.md](https://github.com/moazizbera/StoryWeaver-AI/blob/main/docs/GEMINI_INTEGRATION.md)
-  - Complete integration guide
-  - Advanced features utilized
-  - Error handling strategies
-
----
-
-## 🔍 Key Code Snippets
-
-### Gemini Model Initialization
-```python
-# backend/gemini_agent.py (Line 59)
-self.model = genai.GenerativeModel(
-    "gemini-2.5-flash",
-    generation_config=self.generation_config
-)
-```
-
-### Generation Configuration
-```python
-# backend/gemini_agent.py (Lines 48-56)
-self.generation_config = {
-    "temperature": 0.9,           # High creativity
-    "top_p": 0.95,
-    "top_k": 40,
-    "max_output_tokens": 16384,   # Maximum capacity
-    "response_mime_type": "application/json",  # Structured output
-}
-```
-
-### API Health Check
-```python
-# backend/main.py (Lines 58-64)
-@app.get("/health")
-async def health_check():
-    return {
-        "status": "healthy",
-        "service": "StoryWeaver AI",
-        "version": "1.0.0",
-        "model": "gemini-2.5-flash"  # ✅ Proof of model
-    }
-```
-
----
-
-## 📊 Live API Verification
-
-### Test the API Yourself
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/moazizbera/StoryWeaver-AI.git
-cd StoryWeaver-AI
-
-# 2. Set up backend with your Gemini API key
-cd backend
-pip install -r requirements.txt
-cp .env.example .env
-# Add your key: GEMINI_API_KEY=your_key_here
-
-# 3. Run backend
-python main.py
-
-# 4. Verify Gemini model (new terminal)
-curl http://localhost:8000/health
-# Returns: {"status":"healthy","model":"gemini-2.5-flash"}
-
-# 5. Test story generation
-curl -X POST http://localhost:8000/generate-story \
-  -H "Content-Type: application/json" \
-  -d '{
-    "prompt": "A lonely robot on Mars",
-    "num_scenes": 3,
-    "genre": "Science Fiction"
-  }'
-```
-
----
-
-## 🎥 Screen Recording Proof
-
-### What You'll See in a Demo:
-
-1. **Gemini API Usage**
-   - 30-second story generation
-   - 16,384 token JSON response
-   - Structured character, scene, and storyboard data
-
-2. **Console Logs**
-   ```
-   INFO:     ✅ Gemini Agent initialized with model: gemini-2.5-flash (JSON mode enabled)
-   INFO:     📝 Generating story with Gemini 2.5 Flash...
-   INFO:     ✅ Story generated successfully (16234 tokens)
-   ```
-
-3. **Network Traffic**
-   - POST to `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`
-   - API key authentication (redacted)
-   - JSON response with complete story package
-
-4. **Google AI Studio Dashboard**
-   - API key usage statistics
-   - Request count and token consumption
-   - Gemini 2.5 Flash model selection
-
----
-
-## 📈 Google Cloud Services Used
-
-| Service | Purpose | Evidence |
-|---------|---------|----------|
-| **Gemini 2.5 Flash API** | Story generation | [gemini_agent.py](https://github.com/moazizbera/StoryWeaver-AI/blob/main/backend/gemini_agent.py) |
-| **Google AI Studio** | API key management | [.env.example](https://github.com/moazizbera/StoryWeaver-AI/blob/main/backend/.env.example) |
-| **Generative AI SDK** | Python client library | [requirements.txt](https://github.com/moazizbera/StoryWeaver-AI/blob/main/backend/requirements.txt) |
-
----
-
-## ✅ Verification Checklist for Judges
-
-- [x] **Source code publicly available** on GitHub
-- [x] **Gemini 2.5 Flash explicitly used** in code (not generic AI)
-- [x] **API configuration documented** with .env.example
-- [x] **Advanced features utilized**: 16K tokens, JSON mode, retry logic
-- [x] **Comprehensive error handling** for API timeouts
-- [x] **Production-ready implementation** with logging
-- [x] **Open source** (MIT License) - judges can test with their own API key
-- [x] **Live demo available** - instant 0.5s demo + API generation
-
----
-
-## 🔗 Additional Proof Links
-
-- **Architecture Diagrams**: [docs/Architecture/README.md](https://github.com/moazizbera/StoryWeaver-AI/blob/main/docs/Architecture/README.md)
-- **Setup Guide**: [docs/SETUP.md](https://github.com/moazizbera/StoryWeaver-AI/blob/main/docs/SETUP.md)
-- **API Documentation**: [docs/API.md](https://github.com/moazizbera/StoryWeaver-AI/blob/main/docs/API.md)
-- **Tech Stack**: [backend/requirements.txt](https://github.com/moazizbera/StoryWeaver-AI/blob/main/backend/requirements.txt)
-
----
-
-## 🎬 Live Demo Recording
-
-**Watch StoryWeaver AI in action:**
-- 📹 Demo script: [LIVE_DEMO_SCRIPT.md](https://github.com/moazizbera/StoryWeaver-AI/blob/main/LIVE_DEMO_SCRIPT.md)
-- ⚡ Instant demo: Loads in 0.5s (no API required)
-- ✨ AI generation: 30s with full Gemini pipeline
-
-**To record your own demo:**
-```bash
-# Start backend
-cd backend && python main.py
-
-# Start frontend (new terminal)
-cd frontend && npm run dev
-
-# Visit: http://localhost:3002
-# Click: "✨ Generate Story ✨"
-# Watch: Gemini 2.5 Flash in action!
-```
-
----
-
-**This repository provides complete, verifiable proof of Google Gemini 2.5 Flash integration.**  
-All code is open source and can be tested by judges with their own API keys.
-
-------------------------------------------------------------------------
-
 # 🎯 Final Words for Judges
 
 ## Why StoryWeaver AI Deserves to Win
@@ -1272,20 +1062,11 @@ If StoryWeaver AI helped you or impressed you, please:
 
 ```bash
 # Clone the repository
-git clone https://github.com/moazizbera/StoryWeaver-AI.git
-cd StoryWeaver-AI
+git clone https://github.com/yourusername/storyweaver-ai.git
 
-# Backend
-cd backend
-pip install -r requirements.txt
-python main.py
-
-# Frontend (new terminal)
-cd ../frontend
-npm install
-npm run dev
-
-# Visit: http://localhost:3002
+# Start creating cinematic stories in 5 minutes
+cd storyweaver-ai
+# Follow Quick Start guide above
 ```
 
 ---
